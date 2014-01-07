@@ -35,12 +35,13 @@ public class Graph {
 	}
 	public void addEdge(Integer node1, Integer node2) throws RuntimeException {
 		if (! (incidence.containsKey(node1) &&
-			   incidence.containsKey(node2)) )
+			   incidence.containsKey(node2)))
 			throw new RuntimeException("Edge Not Valid");
-		
 		Edge tmpEdge = new Edge(node1,node2);
-		incidence.get(node1).add(tmpEdge);
-		incidence.get(node2).add(tmpEdge);
-		edges.add(tmpEdge); 
+		if(!edges.contains(tmpEdge)){
+			incidence.get(node1).add(tmpEdge);
+			incidence.get(node2).add(tmpEdge);
+			edges.add(tmpEdge);
+		}
 	}
 }

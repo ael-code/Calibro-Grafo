@@ -17,4 +17,18 @@ public class Edge{
 		else if(n == node2) return node1;
 		else throw new RuntimeException("invalid opposite node request");
 	}
+	
+	public boolean equals(Object other){
+		if(other != null && other.getClass().equals(this.getClass())){
+			Edge o = (Edge) other;
+			if( (o.node1 == this.node1 && o.node2 == this.node2) ||
+				(o.node1 == this.node2 && o.node2 == this.node1))
+				return true;
+		}
+		return false;
+	}
+	
+	public int hashCode(){
+		return node1.hashCode() + node2.hashCode();
+	}
 }
