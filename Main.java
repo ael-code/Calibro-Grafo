@@ -34,9 +34,12 @@ public class Main {
 	public static int girth(Graph g){
 		int minCycle = Integer.MAX_VALUE;
 		int[] nodesDepth = new int[g.getNodes()+1]; // memorizza la profondita dei nodi durante ogni scansione
+		boolean foundCycle;
 		
 		//cicla su tutti i vertici
 		for(int actRoot = 1; actRoot <= g.getNodes(); actRoot++){
+			//reset flag
+			foundCycle = false;
 			//pulisci il grafo
 			resetDepth(nodesDepth);
 			for(Edge e: g.getEdges())
@@ -50,8 +53,12 @@ public class Main {
 			
 			//cicla fino a che non sono finiti i nodi 
 			while(!actL.isEmpty()){
+				if(foundCycle == true)
+					break;
 				// cicla su tutti i nodi di questo livello
 				for(Integer actNode: actL ){
+					if(foundCycle == true)
+						break;
 					//cicla su tutti i vertici
 					for(Edge e: g.getIncidentEdges(actNode)){
 						if(!e.discovery){
@@ -64,7 +71,10 @@ public class Main {
 							}else{
 								if(nodesDepth[actNode]+nodesDepth[son]+1 < minCycle){
 									minCycle = nodesDepth[actNode]+nodesDepth[son]+1;
+									foundCycle = true;
+									break;
 								}
+								
 							}
 						}
 					}
