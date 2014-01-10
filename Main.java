@@ -82,7 +82,7 @@ public class Main {
 				actL = nextL;
 				nextL = new LinkedList<>();
 			}
-			
+
 		}
 		
 		return minCycle;

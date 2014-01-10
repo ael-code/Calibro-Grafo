@@ -12,9 +12,13 @@ public class Edge{
 		return "(" + node1 + "," + node2 + ")";
 	}
 	
+	public String cleanToString(){
+		return node1.toString()+" "+node2.toString();
+	}
+	
 	public Integer getOpposite(Integer n){
-		if(n== node1) return node2;
-		else if(n == node2) return node1;
+		if(n.equals(node1)) return node2;
+		else if(n.equals(node2)) return node1;
 		else throw new RuntimeException("invalid opposite node request");
 	}
 	
